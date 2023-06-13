@@ -1,14 +1,19 @@
 import { Box, Drawer, Toolbar, Typography, Divider, List, ListItem, ListItemButton, ListItemIcon, Grid, ListItemText } from '@mui/material';
 import {TurnedInNot} from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 interface props {
     drawerWidth:number
 }
 
 export const SideBar : React.FC<props> = ({drawerWidth = 240}) => {
+
+const {displayName} = useSelector((state: RootState) =>( state.auth));
+
   return (
     <Box
         component={'nav'}
-        sx={{width:{sm:drawerWidth, flexShrink:{sm:0}}}}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
     >
         <Drawer
             variant='permanent'
@@ -24,7 +29,7 @@ export const SideBar : React.FC<props> = ({drawerWidth = 240}) => {
                     noWrap
                     component={'div'}
                 >
-                    Thomas C
+                    { displayName }
                 </Typography>
             </Toolbar>
             <Divider/>
