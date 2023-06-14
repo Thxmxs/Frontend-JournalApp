@@ -25,3 +25,11 @@ __Main__
 __Crear nota__
 
 ![image](https://github.com/Thxmxs/JournalApp/assets/69379135/d89f94f8-3b3f-4501-8ac6-77da592e77f6)
+
+
+
+
+
+
+
+![image](https://github.com/Thxmxs/JournalApp/assets/69379135/dc15212d-63f3-4b39-97b1-1825055423f3)
