@@ -1,7 +1,8 @@
 import { Box, Drawer, Toolbar, Typography, Divider, List, ListItem, ListItemButton, ListItemIcon, Grid, ListItemText } from '@mui/material';
 import {TurnedInNot} from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState, useAppDispatch } from '../../store/store';
+import { SideBarItem } from './SideBarItem';
 interface props {
     drawerWidth:number
 }
@@ -9,6 +10,7 @@ interface props {
 export const SideBar : React.FC<props> = ({drawerWidth = 240}) => {
 
 const {displayName} = useSelector((state: RootState) =>( state.auth));
+const { notes } = useSelector((state: RootState) =>( state.journal))
 
   return (
     <Box
@@ -35,24 +37,8 @@ const {displayName} = useSelector((state: RootState) =>( state.auth));
             <Divider/>
             <List>
                 {
-                    ['enero','febrero'].map(el => (
-                        <ListItem
-                            key={el}
-                            disablePadding
-                        >
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <TurnedInNot/>
-                                </ListItemIcon>
-                                <Grid
-                                    container
-                                    direction={'column'}
-                                >
-                                    <ListItemText primary={el}/>
-                                    <ListItemText secondary={'loerm ipsum'}/>
-                                </Grid>
-                            </ListItemButton>
-                        </ListItem>
+                    notes.map(note => (
+                        <SideBarItem note={note} key={note.id}/>
                     ))
                 }
             </List>

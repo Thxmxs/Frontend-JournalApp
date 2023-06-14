@@ -24,21 +24,32 @@ export const journalSlice = createSlice({
             state.isSaving = true;
         },
         addNewEmptyNote:(state, {payload}: PayloadAction<INote>) =>{
-            console.log(payload);
           state.notes?.push(payload);
           state.isSaving = false;
         },
         setActiveNote:(state, {payload}: PayloadAction<INote>) =>{
           state.active = payload;
+          state.messageSaved = '';
         },
-        setNotes:(state, action) =>{
-          
+        setNotes:(state, {payload}: PayloadAction<INote[]>) =>{
+          state.notes = payload;
         },
         setSaving:(state) =>{
-          
+          state.isSaving = true;
+          state.messageSaved = '';
         },
-        updateNote:(state, action) =>{
-          
+        noteUpdated:(state, {payload}: PayloadAction<INote>) =>{
+          state.isSaving = false;
+          state.notes = state.notes.map(note =>{
+            if(note.id === payload.id){
+              return payload;
+            }
+            return note;
+          });
+
+          state.messageSaved = `${payload.title}, actualizada correctamente`;
+
+
         },
         deleteNoteById:(state, action) =>{
           
@@ -46,4 +57,4 @@ export const journalSlice = createSlice({
      },
 });
 
-export const {addNewEmptyNote,setActiveNote,deleteNoteById,setNotes,setSaving,updateNote,creatingNewNote} = journalSlice.actions;
+export const {addNewEmptyNote,setActiveNote,deleteNoteById,setNotes,setSaving,noteUpdated,creatingNewNote} = journalSlice.actions;

@@ -13,15 +13,17 @@ const formValidations = {
   password:[ (value:string) => value.length >= 6 ,' la clave debe ser mayor a 6 caracteres']
 }
 
+const initialLoginState ={
+  email:'',
+  password:''
+}
+
 export const LoginPage = () => {
 
   const {status,errorMessage} = useSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
 
-  const {email, password, onInputChange} = useForm({
-    email:'',
-    password:''
-  },formValidations);
+  const {email, password, onInputChange} = useForm(initialLoginState,formValidations);
 
   const isAuthenticating = useMemo(() =>status === 'checking',[status])
 
