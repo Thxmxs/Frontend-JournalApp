@@ -6,6 +6,7 @@ __Tecnologias__
 1. ReatJS
 2. Firebase
 3. TypeScript
+4. Redux
 
 
 __Iniciar sesion__
